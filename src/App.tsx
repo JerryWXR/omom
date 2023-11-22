@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import router from "./routes";
+import { useRoutes} from "react-router-dom";
+import Header from "./components/header";
+import {useAuth} from "./hooks/withLogin";
 
-function App() {
+function  App() {
+    const routes = useRoutes(router)
+    const auth = useAuth()
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {
+            auth.loginInfo.isLogin && <Header/>
+        }
+        {routes}
     </div>
   );
 }

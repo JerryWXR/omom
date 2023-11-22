@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.topBar{
+    height:90px;
+    background-color: #fff;
+    border: 0.5px #333 solid;
+    box-shadow: 10px 0 15px #333;
+
+}
+.wrapper{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+.headerLogo img{
+    width: 90px;
+    height: 90px;
+}
+.headerMenu{
+    height: 80px;
+    line-height: 80px;
+    width: 600px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.headerMenu div a{
+    color: #000;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: YouYuan,  sans-serif;
+
+}
+.headerMenu div a:hover{
+    color: #aaa;
+}
