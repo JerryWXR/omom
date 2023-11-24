@@ -3,24 +3,24 @@ import {getLoginStatus} from "../../services";
 import {LoginInfo} from "../../types";
 
 export const useAuth = () => {
-const [loginInfo,setLoginInfo]=useState({isLogin:false} as LoginInfo)
+const [loginInfo,setLoginInfo]=useState({} as LoginInfo)
     // 监听接口返回的登录状态
-    // useEffect(() => {
-    //     getLoginStatus().then((res:LoginInfo) => {
-    //         console.log(res)
-    //         // 设置登录状态
-    //         setLoginInfo(res)
-    //     })
-    // },[])
+    useEffect(() => {
+        getLoginStatus().then((res) => {
+            console.log(res)
+            // 设置登录状态
+            setLoginInfo(res.data)
+        })
+    },[])
     // 返回新的登录状态
     console.log(loginInfo)
-    return {loginInfo}
+    return loginInfo
 
 };
 
 // 传入所有需要判断的组件
 export const withAuth = (Component:FC<any>)=>() => {
-    const {loginInfo} = useAuth()
+    const loginInfo = useAuth()
     console.log(loginInfo)
     if (!Object.keys(loginInfo).length) {
         return <></>;

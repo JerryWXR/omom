@@ -3,7 +3,7 @@ import {Button, Checkbox, Form, Input} from 'antd';
 import "./index.css"
 import styled from "@emotion/styled";
 import {login} from "../../services";
-import {RESPONSE_STATUS} from "../../contants";
+import {TokenInfo, RESPONSE_STATUS} from "../../contants";
 import {useNavigate} from "react-router-dom";
 import {Response} from "../../types";
 
@@ -12,17 +12,18 @@ type FieldType = {
     password?: string;
     remember?: string;
 };
-const Login = ()=> {
+const Login = () => {
     const navigate = useNavigate();
-    const onFinish =async (values: any) => {
+    const onFinish = async (values: any) => {
         console.log('Success:', values);
         const params = {
             ...values
         }
-        const res:Response<string> = await login(params)
+        const res: Response<string> = await login(params)
         console.log(res)
-        if(res.retCode==RESPONSE_STATUS.SUCCESS){
-            // navigate('/')
+        if (res.retCode == RESPONSE_STATUS.SUCCESS) {
+            sessionStorage.setItem(TokenInfo.AUTHORIZATION, res.data)
+            navigate('/')
             return res.data
         }
     };
@@ -33,34 +34,34 @@ const Login = ()=> {
     return (
         <div className="body-container">
             <Form className="form"
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
+                  name="basic"
+                  labelCol={{span: 8}}
+                  wrapperCol={{span: 16}}
+                  initialValues={{remember: true}}
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
+                  autoComplete="off"
             >
                 <Form.Item<FieldType>
                     label="用户名"
                     name="username"
-                    rules={[{ required: true, message: '请输入用户名！' }]}
+                    rules={[{required: true, message: '请输入用户名！'}]}
                 >
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item<FieldType>
                     label="密码"
                     name="password"
-                    rules={[{ required: true, message: '请输入您的密码！' }]}
+                    rules={[{required: true, message: '请输入您的密码！'}]}
                 >
-                    <Input.Password />
+                    <Input.Password/>
                 </Form.Item>
 
                 <Form.Item<FieldType>
                     name="remember"
                     valuePropName="checked"
-                    wrapperCol={{ offset: 4, span: 16 }}
+                    wrapperCol={{offset: 4, span: 16}}
                 >
                     <Checkbox>记住密码</Checkbox>
                 </Form.Item>
@@ -74,6 +75,6 @@ const Login = ()=> {
 export default Login;
 
 const Title = styled.h2`
-    margin-bottom: 2.4rem;
-  color: rgba(94,108,132);
+  margin-bottom: 2.4rem;
+  color: rgba(94, 108, 132);
 `

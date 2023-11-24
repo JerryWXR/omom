@@ -1,17 +1,26 @@
 import {LoginInfo, Response, World} from "../types";
-import {fetcher, post} from "../utils/request";
+import {get, post} from "../utils/request";
 
 
-const API_BASE_URL= 'http://api-omom.ruruzi.com'
+const API_BASE_URL= 'http://api.omoms.top'
 export interface loginParams{
     username:string,
     password:string
 }
-export const login = (params:loginParams):Promise<Response<string>> => {
-    return post (`${API_BASE_URL}/user/login`,params)
+export interface registerParams{
+    username:string,
+    password:string,
+    phone:string,
+    verifyCode:string
 }
-export const getLoginStatus = ():Promise<LoginInfo>=> {
-    return fetcher(`${API_BASE_URL}/user/login/status`)
+export const login = (params:loginParams):Promise<Response<string>> => {
+    return post (`${API_BASE_URL}/auth/login`,params)
+}
+export const register = (params:registerParams):Promise<Response<string>> => {
+    return post (`${API_BASE_URL}/auth/register`,params)
+}
+export const getLoginStatus = ():Promise<Response<LoginInfo>> => {
+    return get(`${API_BASE_URL}/auth/login/status`)
 }
 // 获取当前单词
 export const getCurrentWorld = ():Promise<World>=>{

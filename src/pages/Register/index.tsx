@@ -1,22 +1,39 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Checkbox, Form, Input, Space} from 'antd';
 import "./index.css"
+import {login, register} from "../../services";
+import {Response} from "../../types";
+import {RESPONSE_STATUS} from "../../contants";
+import {useNavigate} from "react-router-dom";
 
 type FieldType = {
     username: string;
     password: string;
-    confirmPassword: string;
-    remember?: string;
-    iphone: number;
-    code: number
+    phone: string;
+    verifyCode: string
 };
-const Register = () => {
+
+interface Props {
+    setIsRegister: (register: boolean) => void
+}
+const Register = (props: Props) => {
     let timer: any
+    const {setIsRegister} = props
     const [count, setCount] = useState(60);
     const [btnDisabled, setBtnDisabled] = useState(false)
+    const navigate = useNavigate();
     // 注册
-    const onFinish = (values: any) => {
+    const onFinish = async (values: any) => {
         console.log('Success:', values);
+        const params = {
+            ...values
+        }
+        const res:Response<string> = await register(params)
+        console.log(res)
+        if(res.retCode==RESPONSE_STATUS.SUCCESS){
+            setIsRegister(true)
+            return res.data
+        }
     };
     // 初始化定时器
     useEffect(() => {
@@ -68,27 +85,27 @@ const Register = () => {
                 </Form.Item>
                 <Form.Item<FieldType>
                     label="确认密码"
-                    name="confirmPassword"
+                    // name="confirmPassword"
                     rules={[{required: true, message: '请重新输入您的密码！'}]}
                 >
                     <Input.Password/>
                 </Form.Item>
                 <Form.Item<FieldType>
                     label="手机号码"
-                    name="iphone"
+                    name="phone"
                     rules={[
                         {required: true, message: '请输入您的手机号！'},
-                        {
-                            pattern: /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/,
-                            message: '请输入正确的手机号'
-                        }
+                        // {
+                        //     pattern: /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/,
+                        //     message: '请输入正确的手机号'
+                        // }
                     ]}
                 >
                     <Input/>
                 </Form.Item>
                 <Form.Item<FieldType>
                     label="短信验证码"
-                    name="code"
+                    name="verifyCode"
                     rules={[{required: true, message: '请输入您的验证码！'}]}
                 >
                     <Space.Compact style={{width: '100%'}}>

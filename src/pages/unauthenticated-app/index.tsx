@@ -7,12 +7,12 @@ import {useAuth} from "../../hooks/withLogin";
 import {useNavigate} from "react-router-dom";
 
 const UnauthenticatedApp = () => {
-    const [isRegister,setIsRegister] = useState(false)
-    const auth = useAuth()
+    const [isRegister,setIsRegister] = useState<boolean>(true)
+    const loginInfo = useAuth()
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (auth.loginInfo.isLogin) {
+        if (loginInfo.isLogin) {
             navigate('/')
         }
     }, [])
@@ -21,7 +21,7 @@ const UnauthenticatedApp = () => {
         <div className="container">
             <Card>
                 {
-                    isRegister ? <Register /> : <Login />
+                    isRegister ?  <Login /> : <Register setIsRegister={setIsRegister}/>
                 }
 
                 <Divider/>

@@ -7,11 +7,11 @@ import {useAuth} from "./hooks/withLogin";
 
 function  App() {
     const routes = useRoutes(router)
-    const auth = useAuth()
+    const loginInfo = useAuth()
   return (
     <div className="App">
         {
-            auth.loginInfo.isLogin && <Header/>
+            loginInfo.isLogin && <Header/>
         }
         {routes}
     </div>
