@@ -1,11 +1,9 @@
 export interface Response<T> {
     message:string,
     data:T,
-    code:string
+    retCode:string
 }
 export interface LoginInfo{
-    username:string,
-    password:string,
     isLogin:boolean
 }
 export interface World{

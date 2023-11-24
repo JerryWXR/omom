@@ -1,0 +1,67 @@
+.mineContainer{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.containerTop{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.personalInfo{
+    width: 95%;
+    display: flex;
+    text-align: start;
+}
+.nameContainer{
+    text-align: start;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+.otherInfo{
+    font-size: 12px;
+}
+.otherInfo span:first-child{
+    background-color: crimson;
+    border-radius: 5px;
+    margin-right: 10px;
+    color: #ffffff;
+}
+.signIn{
+    width: 95%;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #aaaaaa;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
+.dividerStyle{
+    margin:0 0 12px 0;
+    background-color: #aaaaaa;
+}
+.signInDetail{
+    display: flex;
+    flex-direction: column
+}
+.countContainer{
+    width: 95%;
+}
+.countInfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+}
+.countInfo-per{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start
+}

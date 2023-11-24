@@ -1,29 +1,27 @@
 import React, {Component, FC, useEffect, useState} from 'react';
 import {getLoginStatus} from "../../services";
 import {LoginInfo} from "../../types";
-import {useNavigate} from "react-router-dom";
 
 export const useAuth = () => {
-const [loginInfo,setLoginInfo]=useState({
-    username: 'admin',
-    password: '123',
-    isLogin: true
-} as LoginInfo)
+const [loginInfo,setLoginInfo]=useState({isLogin:false} as LoginInfo)
     // 监听接口返回的登录状态
     // useEffect(() => {
     //     getLoginStatus().then((res:LoginInfo) => {
+    //         console.log(res)
     //         // 设置登录状态
     //         setLoginInfo(res)
     //     })
     // },[])
     // 返回新的登录状态
-
+    console.log(loginInfo)
     return {loginInfo}
+
 };
 
 // 传入所有需要判断的组件
 export const withAuth = (Component:FC<any>)=>() => {
     const {loginInfo} = useAuth()
+    console.log(loginInfo)
     if (!Object.keys(loginInfo).length) {
         return <></>;
     }

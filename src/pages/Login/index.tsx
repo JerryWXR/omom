@@ -4,6 +4,8 @@ import "./index.css"
 import styled from "@emotion/styled";
 import {login} from "../../services";
 import {RESPONSE_STATUS} from "../../contants";
+import {useNavigate} from "react-router-dom";
+import {Response} from "../../types";
 
 type FieldType = {
     username?: string;
@@ -11,14 +13,16 @@ type FieldType = {
     remember?: string;
 };
 const Login = ()=> {
-
+    const navigate = useNavigate();
     const onFinish =async (values: any) => {
         console.log('Success:', values);
         const params = {
             ...values
         }
-        const res = await login(params)
-        if(res.code==RESPONSE_STATUS.SUCCESS){
+        const res:Response<string> = await login(params)
+        console.log(res)
+        if(res.retCode==RESPONSE_STATUS.SUCCESS){
+            // navigate('/')
             return res.data
         }
     };

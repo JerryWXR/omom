@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Divider, Typography} from "antd";
+import { Card, Divider} from "antd";
 import Register from "../Register";
 import Login from "../Login";
 import "./index.css"
@@ -8,7 +8,6 @@ import {useNavigate} from "react-router-dom";
 
 const UnauthenticatedApp = () => {
     const [isRegister,setIsRegister] = useState(false)
-    const [error, setError] = useState<Error | null>(null)
     const auth = useAuth()
     const navigate = useNavigate();
 
@@ -21,7 +20,6 @@ const UnauthenticatedApp = () => {
     return (
         <div className="container">
             <Card>
-                {/*{error ? <Typography.Text type={'danger'}>{error.message}</Typography.Text> : null}*/}
                 {
                     isRegister ? <Register /> : <Login />
                 }
