@@ -39,25 +39,60 @@ const Mine = () => {
                                 <span>每日学习量</span>
                                 <span style={{fontSize: '12px', color: '#aaa'}}>当日复习的单词量+当日新学单词量</span>
                             </div>
-                            <div>
-                                <Input></Input>
+                            <div style={{height:"60px",lineHeight:"60px"}}>
+                                <Input className="inputStyle"></Input>
                             </div>
                         </div>
                         <Divider className="dividerStyle"></Divider>
                         <div className="countInfo">
                             <div className="countInfo-per">
-                                <span>每日学习量</span>
+                                <span>记忆模式：看英文回忆中文</span>
                                 <span style={{fontSize: '12px', color: '#aaa'}}>当日复习的单词量+当日新学单词量</span>
                             </div>
+                            <div style={{height:"60px",lineHeight:"60px"}}>
+                                <Input className="inputStyle"></Input>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="wordContainer">
+                        <div className="wordInfo">
                             <div>
-                                <Input></Input>
+                                单词上限总量
+                            </div>
+                            <div>
+                                <Input className="inputStyle"></Input>
                             </div>
                         </div>
                         <Divider className="dividerStyle"></Divider>
+                        <div className="wordInfo">
+                            <div>
+                                免费获取单词上限
+                            </div>
+                            <div>
+                                <Input className="inputStyle"></Input>
+                            </div>
+                        </div>
+                        <Divider className="dividerStyle"></Divider>
+                        <div className="wordInfo">
+                            <div>
+                                购买单词上限
+                            </div>
+                            <div>
+                                <Input className="inputStyle"></Input>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="wordContainer">
+                        <div className="wordInfo">
+                            <div>
+                                已记忆的单词量
+                            </div>
+                            <div>
+                                <Input className="inputStyle"></Input>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>单词设置部分</div>
-                <div>已记忆单词量</div>
         </div>
     );
 };

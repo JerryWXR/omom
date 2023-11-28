@@ -37,14 +37,15 @@
     width: 95%;
     height: 60px;
     border-radius: 10px;
-    background-color: #aaaaaa;
+    background-color: rgb(222,222,222);
+    padding-left: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 10px 0 10px 0;
 }
 .dividerStyle{
-    margin:0 0 12px 0;
+    margin:0 12px 12px 0;
     background-color: #aaaaaa;
 }
 .signInDetail{
@@ -53,6 +54,9 @@
 }
 .countContainer{
     width: 95%;
+    background-color: rgb(222,222,222);
+    border-radius: 10px;
+    padding-left: 20px;
 }
 .countInfo{
     width: 100%;
@@ -60,8 +64,32 @@
     justify-content: space-between
 }
 .countInfo-per{
+    height: 60px;
+    line-height: 30px;
     margin: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: start
+}
+.wordContainer{
+    width: 95%;
+    background-color: rgb(222,222,222);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-radius: 10px;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.wordInfo{
+    height: 60px;
+    line-height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.inputStyle{
+    width: 60px;
+    height: 40px;
+    margin-right: 20px;
 }

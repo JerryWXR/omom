@@ -1,0 +1,39 @@
+{
+  "初始化": {
+    "检查node环境": {
+      "Type": "COMMAND_STDOUT",
+      "Script": {
+        "输出node版本": "node -v 2>&1"
+      }
+    },
+    "检查pnpm环境": {
+      "Type": "COMMAND_STDOUT",
+      "Script": {
+        "输出pnpm版本": "pnpm -v"
+      }
+    },
+    "绑定构建参数": {
+      "Type": "BUILD_PARAMETER_DROP_DOWN_MENU",
+      "StepsName": "部署",
+      "ParamName": "deploy-choice"
+    }
+  },
+  "编译构建": {
+    "执行Maven构建": {
+      "Type": "COMMAND_STATUS",
+      "Script": {
+        "Maven构建": "cd ${PROJECT_PATH};pnpm install;pnpm build;"
+      }
+    }
+  },
+  "部署": {
+    "部署服务器": {
+      "Type": "COMMAND_STATUS",
+      "Script": {
+        "清除镜像": "docker rm -f omoms-front",
+        "推送镜像": "cd ${PROJECT_PATH};docker build -f build-script/Dockerfile -t omoms-front .;",
+        "部署镜像": "docker run -d -p 8082:3000 --name omoms-front omoms-front;"
+      }
+    }
+  }
+}
