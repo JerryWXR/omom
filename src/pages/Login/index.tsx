@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Checkbox, Form, Input} from 'antd';
 import "./index.css"
 import styled from "@emotion/styled";
-import {login} from "../../services";
+import {getLoginStatus, login} from "../../services";
 import {TokenInfo, RESPONSE_STATUS} from "../../contants";
 import {useNavigate} from "react-router-dom";
 import {Response} from "../../types";
@@ -12,8 +12,12 @@ type FieldType = {
     password?: string;
     remember?: string;
 };
-const Login = () => {
+interface Props {
+    getLogin: (isLogin: boolean) => void
+}
+const Login = (props: Props) => {
     const navigate = useNavigate();
+    const {getLogin} = props
     const onFinish = async (values: any) => {
         console.log('Success:', values);
         const params = {
@@ -24,6 +28,7 @@ const Login = () => {
         if (res.retCode == RESPONSE_STATUS.SUCCESS) {
             sessionStorage.setItem(TokenInfo.AUTHORIZATION, res.data)
             navigate('/')
+            getLogin(true)
             return res.data
         }
     };
@@ -66,7 +71,6 @@ const Login = () => {
                     <Checkbox>记住密码</Checkbox>
                 </Form.Item>
                 <Button type="primary" htmlType="submit">请登录</Button>
-
             </Form>
         </div>
     );

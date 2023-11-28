@@ -25,9 +25,16 @@
     line-height: 80px;
     width: 600px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 
 }
+.module{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 500px;
+}
+
 .headerMenu div a{
     color: #000;
     text-decoration: none;

@@ -5,7 +5,7 @@ import {Button, Divider} from "antd";
 import {World} from "../../types";
 import {AlignLeftOutlined} from "@ant-design/icons";
 
-const LearnWorld = () => {
+const LearnWord = () => {
     const arrayWorld = [
         {
             index: 0,
@@ -80,7 +80,7 @@ const LearnWorld = () => {
         }
     }
     return (
-        <div className="learnWorld">
+        <div className="learnWord">
             <div className="worldArea">
                 <div className="areaTop">
                     <div className="title">{current.world}</div>
@@ -144,4 +144,4 @@ const LearnWorld = () => {
     )
 };
 
-export default withAuth(LearnWorld);
+export default LearnWord;

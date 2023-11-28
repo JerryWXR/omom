@@ -9,4 +9,4 @@ const ReStudy = () => {
     );
 };
 
-export default withAuth(ReStudy);
+export default ReStudy;

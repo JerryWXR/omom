@@ -10,9 +10,10 @@ function  App() {
     const loginInfo = useAuth()
   return (
     <div className="App">
-        {
-            loginInfo.isLogin && <Header/>
-        }
+        {/*{*/}
+        {/*    loginInfo.isLogin && <Header/>*/}
+        {/*}*/}
+        <Header/>
         {routes}
     </div>
   );

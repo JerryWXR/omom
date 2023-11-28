@@ -62,4 +62,4 @@ const Mine = () => {
     );
 };
 
-export default withAuth(Mine);
+export default Mine;
