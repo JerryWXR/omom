@@ -14,7 +14,7 @@ function  App() {
         {/*    loginInfo.isLogin && <Header/>*/}
         {/*}*/}
         <Header/>
-        {routes}
+        {loginInfo.isLogin && routes}
     </div>
   );
 }

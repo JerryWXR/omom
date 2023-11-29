@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Checkbox, Form, Input, Space} from 'antd';
+import {Button, Form, Input, Space} from 'antd';
 import "./index.css"
-import {login, register} from "../../services";
+import { register} from "../../services";
 import {Response} from "../../types";
 import {RESPONSE_STATUS} from "../../contants";
 import {useNavigate} from "react-router-dom";
+import {LockOutlined, PhoneOutlined, UserOutlined} from "@ant-design/icons";
 
 type FieldType = {
     username: string;
@@ -16,6 +17,7 @@ type FieldType = {
 interface Props {
     setIsRegister: (register: boolean) => void
 }
+
 const Register = (props: Props) => {
     let timer: any
     const {setIsRegister} = props
@@ -28,9 +30,9 @@ const Register = (props: Props) => {
         const params = {
             ...values
         }
-        const res:Response<string> = await register(params)
+        const res: Response<string> = await register(params)
         console.log(res)
-        if(res.retCode==RESPONSE_STATUS.SUCCESS){
+        if (res.retCode == RESPONSE_STATUS.SUCCESS) {
             setIsRegister(true)
             return res.data
         }
@@ -61,50 +63,48 @@ const Register = (props: Props) => {
     }, [count]);
     return (
         <div className="body-container">
-            <Form className="form"
-                  name="basic"
-                  labelCol={{span: 8}}
-                  wrapperCol={{span: 16}}
-                  initialValues={{remember: true}}
-                  onFinish={onFinish}
-                  autoComplete="off"
+            <Form
+                className="login-form"
+                initialValues={{remember: true}}
+                onFinish={onFinish}
             >
-                <Form.Item<FieldType>
-                    label="用户名"
+                <Form.Item
                     name="username"
-                    rules={[{required: true, message: '请输入用户名！'}]}
+                    rules={[{required: true, message: '请输入您的用户名'}]}
                 >
-                    <Input/>
+                    <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="用户名"/>
                 </Form.Item>
-                <Form.Item<FieldType>
-                    label="设置密码"
+                <Form.Item
                     name="password"
-                    rules={[{required: true, message: '请输入您的密码！'}]}
+                    rules={[{required: true, message: '请输入您的密码'}]}
                 >
-                    <Input.Password/>
+                    <Input
+                        prefix={<LockOutlined className="site-form-item-icon"/>}
+                        type="password"
+                        placeholder="设置密码"
+                    />
                 </Form.Item>
-                <Form.Item<FieldType>
-                    label="确认密码"
-                    // name="confirmPassword"
-                    rules={[{required: true, message: '请重新输入您的密码！'}]}
+                <Form.Item
+                    name="password"
+                    rules={[{required: true, message: '请重新输入您的密码'}]}
                 >
-                    <Input.Password/>
+                    <Input
+                        prefix={<LockOutlined className="site-form-item-icon"/>}
+                        type="password"
+                        placeholder="确认密码"
+                    />
                 </Form.Item>
-                <Form.Item<FieldType>
-                    label="手机号码"
+                <Form.Item
                     name="phone"
-                    rules={[
-                        {required: true, message: '请输入您的手机号！'},
-                        // {
-                        //     pattern: /^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\d{8}$/,
-                        //     message: '请输入正确的手机号'
-                        // }
-                    ]}
+                    rules={[{required: true, message: '请输入您的手机号'}]}
                 >
-                    <Input/>
+                    <Input
+                        prefix={<PhoneOutlined />}
+                        type="phone"
+                        placeholder="手机号"
+                    />
                 </Form.Item>
-                <Form.Item<FieldType>
-                    label="短信验证码"
+                <Form.Item
                     name="verifyCode"
                     rules={[{required: true, message: '请输入您的验证码！'}]}
                 >
@@ -116,17 +116,16 @@ const Register = (props: Props) => {
                             ) : (
                                 <Button disabled>已发送({count}秒)</Button>
                             )}</>
-
-                        {/*<Button style={{backgroundColor: "#ccc"}} onClick={getCode}>获取验证码</Button>*/}
                     </Space.Compact>
                 </Form.Item>
 
-                <Form.Item wrapperCol={{offset: 4, span: 16}}>
-                    <Button type="primary" htmlType="submit">
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="login-form-button">
                         注册
                     </Button>
                 </Form.Item>
             </Form>
+
         </div>
     );
 };

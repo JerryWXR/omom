@@ -3,7 +3,7 @@
     padding: 0;
 }
 .topBar{
-    height:90px;
+    height:60px;
     background-color: #fff;
     border: 0.5px #333 solid;
     box-shadow: 10px 0 15px #333;
@@ -11,37 +11,47 @@
 }
 .wrapper{
     width: 1200px;
+    height: 60px;
+    line-height: 60px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
 
 }
+.wrapperLeft{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
 .headerLogo img{
     width: 90px;
-    height: 90px;
+    height: 60px;
 }
-.headerMenu{
-    height: 80px;
-    line-height: 80px;
-    width: 600px;
-    display: flex;
-    justify-content: space-between;
+/*.headerMenu{*/
+/*    height: 80px;*/
+/*    line-height: 80px;*/
+/*    width: 600px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
 
-}
-.module{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 500px;
-}
+/*}*/
+/*.module{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-around;*/
+/*    width: 800px;*/
+/*}*/
 
-.headerMenu div a{
-    color: #000;
+.wrapper div a{
+    color: #aaaaaa;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 16px;
     font-family: YouYuan,  sans-serif;
 
 }
 .headerMenu div a:hover{
     color: #aaa;
+}
+.ant-modal-content{
+    width: 400px;
 }

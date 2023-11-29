@@ -6,15 +6,18 @@ import {getLoginStatus, login} from "../../services";
 import {TokenInfo, RESPONSE_STATUS} from "../../contants";
 import {useNavigate} from "react-router-dom";
 import {Response} from "../../types";
+import {LockOutlined, UserOutlined} from "@ant-design/icons";
 
 type FieldType = {
     username?: string;
     password?: string;
     remember?: string;
 };
+
 interface Props {
     getLogin: (isLogin: boolean) => void
 }
+
 const Login = (props: Props) => {
     const navigate = useNavigate();
     const {getLogin} = props
@@ -33,44 +36,49 @@ const Login = (props: Props) => {
         }
     };
 
-    const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
-    };
     return (
         <div className="body-container">
-            <Form className="form"
-                  name="basic"
-                  labelCol={{span: 8}}
-                  wrapperCol={{span: 16}}
-                  initialValues={{remember: true}}
-                  onFinish={onFinish}
-                  onFinishFailed={onFinishFailed}
-                  autoComplete="off"
+            <Form
+                className="login-form"
+                initialValues={{remember: true}}
+                onFinish={onFinish}
             >
-                <Form.Item<FieldType>
-                    label="用户名"
+                <Form.Item
                     name="username"
-                    rules={[{required: true, message: '请输入用户名！'}]}
+                    rules={[{required: true, message: '请输入您的用户名'}]}
                 >
-                    <Input/>
+                    <Input prefix={<UserOutlined className="site-form-item-icon"/>} placeholder="用户名"/>
                 </Form.Item>
-
-                <Form.Item<FieldType>
-                    label="密码"
+                <Form.Item
                     name="password"
-                    rules={[{required: true, message: '请输入您的密码！'}]}
+                    rules={[{required: true, message: '请输入您的密码'}]}
                 >
-                    <Input.Password/>
+                    <Input
+                        prefix={<LockOutlined className="site-form-item-icon"/>}
+                        type="password"
+                        placeholder="密码"
+                    />
+                </Form.Item>
+                <Form.Item>
+                    <div  className="operateBtn">
+                    <div>
+                        <Form.Item name="remember" valuePropName="checked" noStyle>
+                            <Checkbox>记住密码</Checkbox>
+                        </Form.Item>
+                    </div>
+                    <div>
+                        <a className="login-form-forgot" href="">
+                            忘记密码
+                        </a>
+                    </div>
+                    </div>
                 </Form.Item>
 
-                <Form.Item<FieldType>
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{offset: 4, span: 16}}
-                >
-                    <Checkbox>记住密码</Checkbox>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" className="login-form-button">
+                        登录
+                    </Button>
                 </Form.Item>
-                <Button type="primary" htmlType="submit">请登录</Button>
             </Form>
         </div>
     );

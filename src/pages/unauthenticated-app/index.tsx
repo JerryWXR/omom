@@ -30,14 +30,14 @@ const UnauthenticatedApp = (props:Props) => {
 
     return (
         <div className="container">
-            <Card>
+            <div>
                 {
                     isRegister ?  <Login getLogin={getLogin}></Login> : <Register setIsRegister={setIsRegister}/>
                 }
 
-                <Divider/>
+                <Divider className="ant-divider"/>
                 <a onClick={() => setIsRegister(!isRegister)}>{isRegister ? '没有账号？注册新账号' :'已经有帐号了？直接登录' }</a>
-            </Card>
+            </div>
         </div>
     );
 };
