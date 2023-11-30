@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoPlayer from "../../components/videoPlayer";
-import {Button, Divider, Tabs, theme} from "antd";
+import {Button, Collapse, Divider, Tabs, theme} from "antd";
 import type {TabsProps} from 'antd';
 import StickyBox from 'react-sticky-box';
 import './index.css'
@@ -49,10 +49,27 @@ const VideoDetails = () => {
                                     <Button>购买套餐</Button>
                                 </div>
                             </div>
+                            <Divider></Divider>
+                            <div className='class-desc'>
+                                <div>课程概述</div>
+                                <div></div>
+                            </div>
                         </div>
                     </TabPane>
                     <TabPane tab="课程目录" key="2">
-                        我是tab2
+                        <Collapse
+                            expandIconPosition={"end"}
+                            bordered={false}
+                            style={{textAlign:'left',marginBottom:'20px',backgroundColor:'#fff'}}
+                            items={[
+                                { key: '1', label: '01 课程简介', children: <p>目录</p> },
+                                { key: '2', label: '02 第一节', children: <p>目录w22</p> },
+                                { key: '3', label: '01 课程简介', children: <p>目录</p> },
+                                { key: '4', label: '02 第一节', children: <p>目录w22</p> },
+                                { key: '5', label: '01 课程简介', children: <p>目录</p> },
+                                { key: '6', label: '02 第一节', children: <p>目录w22</p> },
+                            ]}
+                        />
                     </TabPane>
                     <TabPane tab="课程评价" key="3">
                         我是tab3

@@ -1,10 +1,16 @@
-import React from 'react';
-import {Avatar, Card, Carousel, Divider, List} from "antd";
+import React, {useEffect, useState} from 'react';
+import {Avatar, Card, Carousel, Divider, List,Image} from "antd";
 import "./index.css"
 import {useNavigate} from "react-router-dom";
+import {getAudibleBanner, getAudibleClassNew} from "../../services";
+import {Banner, NewClass} from "../../types";
+
 
 const Audible = () => {
     const navigate = useNavigate();
+    const [banner, setBanner] = useState<Array<Banner>>([])
+    const [newClass, setNewClass] = useState<Array<NewClass>>([])
+
     // 视频播放
     const relay = () => {
         navigate('/videoDetails')
@@ -49,21 +55,26 @@ const Audible = () => {
             title: 'Ant Design Title 4',
         },
     ];
+    useEffect(() => {
+        getAudibleBanner().then((res) => {
+            setBanner(res.data)
+            console.log(banner)
+        })
+        getAudibleClassNew().then((res) => {
+            console.log(res)
+            setNewClass(res.data)
+        })
+    }, [])
     return (
         <div className="audible-container">
             <Carousel className="carousel-chart" autoplay>
-                <div>
-                    <h3>1</h3>
-                </div>
-                <div>
-                    <h3>2</h3>
-                </div>
-                <div>
-                    <h3>3</h3>
-                </div>
-                <div>
-                    <h3>4</h3>
-                </div>
+                {
+                    banner.map((item, index) => {
+                        return <div key={index}>
+                            <Image style={{width:'100vw',height:'100%'}} src={item.bannerUrl}/>
+                        </div>
+                    })
+                }
             </Carousel>
             <div className="list-container">
                 <div className="title-container">最新视频</div>
@@ -77,24 +88,20 @@ const Audible = () => {
                         xl: 6,
                         xxl: 3,
                     }}
-                    dataSource={dataNew}
+                    dataSource={newClass}
                     renderItem={(item) => (
                         <List.Item>
-                            <Card className='card-container' title={item.title}>
+                            <Card className='card-container' title={<Image style={{width:'100%',height:'100%'}} src={item.cover}/>}>
                                 <div className='card-info'>
-                                    <div>手机摄影高手之路</div>
-                                    <div>干货帮</div>
+                                    <div>{item.title}</div>
+                                    <div>{item.categoryName}</div>
+                                    <div>{item.description}</div>
                                     <div className='price-info'>
-                                        <div>
-                                            <span>¥</span>
-                                            <span>39</span>
-                                        </div>
-                                        <div>817人</div>
+                                        <div>{item.clickCount}人</div>
                                     </div>
                                 </div>
                             </Card>
                         </List.Item>
-
                     )}
                 />
             </div>

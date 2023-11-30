@@ -1,4 +1,4 @@
-import {LoginInfo, Response, World} from "../types";
+import {Banner, LoginInfo, NewClass, Response, World} from "../types";
 import {get, post} from "../utils/request";
 
 
@@ -13,16 +13,28 @@ export interface registerParams{
     phone:string,
     verifyCode:string
 }
+
+// 登录
 export const login = (params:loginParams):Promise<Response<string>> => {
     return post (`${API_BASE_URL}/auth/login`,params)
 }
+// 注册
 export const register = (params:registerParams):Promise<Response<string>> => {
     return post (`${API_BASE_URL}/auth/register`,params)
 }
+// 获取当前登录状态
 export const getLoginStatus = ():Promise<Response<LoginInfo>> => {
     return get(`${API_BASE_URL}/auth/login/status`)
 }
 // 获取当前单词
 export const getCurrentWorld = ():Promise<World>=>{
     return post(`${API_BASE_URL}/getCurrentWorld`)
+}
+// 获取有声课堂banner图
+export const getAudibleBanner = ():Promise<Response<Array<Banner>>> => {
+    return get(`${API_BASE_URL}/index/banner/list`)
+}
+//获取有声课堂最新课程
+export const getAudibleClassNew = ():Promise<Response<Array<NewClass>>> => {
+    return get(`${API_BASE_URL}/index/course/list/newest`)
 }

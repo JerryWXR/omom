@@ -15,3 +15,18 @@ export interface World{
     zhSentence:string ,
     enSentence:string
 }
+export interface Banner{
+    id:number,
+    bannerSort:number,
+    bannerUrl:string
+}
+
+export interface NewClass{
+    categoryName:string
+    clickCount: number
+    cover: string
+    description: string
+    id: number
+    nickname: string
+    title: string
+}
