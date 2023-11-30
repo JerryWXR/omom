@@ -43,7 +43,7 @@ const Mine = () => {
                                 <Input className="inputStyle"></Input>
                             </div>
                         </div>
-                        <Divider className="dividerStyle"></Divider>
+                        <Divider style={{width:'98%',marginBottom:'0'}}></Divider>
                         <div className="countInfo">
                             <div className="countInfo-per">
                                 <span>记忆模式：看英文回忆中文</span>
@@ -63,7 +63,7 @@ const Mine = () => {
                                 <Input className="inputStyle"></Input>
                             </div>
                         </div>
-                        <Divider className="dividerStyle"></Divider>
+                        <Divider style={{width:'98%',marginBottom:'0'}}></Divider>
                         <div className="wordInfo">
                             <div>
                                 免费获取单词上限
@@ -72,7 +72,7 @@ const Mine = () => {
                                 <Input className="inputStyle"></Input>
                             </div>
                         </div>
-                        <Divider className="dividerStyle"></Divider>
+                        <Divider style={{width:'98%',marginBottom:'0'}}></Divider>
                         <div className="wordInfo">
                             <div>
                                 购买单词上限

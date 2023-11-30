@@ -4,6 +4,8 @@ import LearnWord from "../pages/learnWord";
 import ReStudy from "../pages/reStudy"
 import Mine from "../pages/mine";
 import UnauthenticatedApp from "../pages/unauthenticated-app";
+import Audible from "../pages/audibleClass";
+import VideoDetails from "../pages/videoDetails";
 
 const router = [
     // {
@@ -15,6 +17,14 @@ const router = [
         path:'/',
         element:<Home/>,
 
+    },
+    {
+        path:'/videoDetails',
+        element: <VideoDetails/>
+    },
+    {
+        path:'/audible',
+        element: <Audible/>,
     },
     {
         path:'/learnWord',

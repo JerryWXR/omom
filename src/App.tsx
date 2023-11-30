@@ -4,6 +4,7 @@ import router from "./routes";
 import { useRoutes} from "react-router-dom";
 import Header from "./components/header";
 import {useAuth} from "./hooks/withLogin";
+import Layout from "./pages/layout";
 
 function  App() {
     const routes = useRoutes(router)
@@ -13,8 +14,9 @@ function  App() {
         {/*{*/}
         {/*    loginInfo.isLogin && <Header/>*/}
         {/*}*/}
-        <Header/>
-        {loginInfo.isLogin && routes}
+        {/*<Header/>*/}
+        {/*{loginInfo.isLogin && routes}*/}
+        <Layout/>
     </div>
   );
 }

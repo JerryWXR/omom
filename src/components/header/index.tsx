@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 import UnauthenticatedApp from "../../pages/unauthenticated-app";
 
 
-const Header = () => {
+const Top = () => {
     const native = useNavigate()
     const toLogin = () => {
         // native("/login")
@@ -35,7 +35,7 @@ const Header = () => {
                             <img src={logo} alt=""/>
                         </div>
                         <div>
-                            <a href="/">有声课堂</a>
+                            <a href="/audible">有声课堂</a>
                         </div>
                         <div>
                             <a href="/learnWord">背单词</a>
@@ -77,4 +77,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Top;
