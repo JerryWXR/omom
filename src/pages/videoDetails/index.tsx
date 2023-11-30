@@ -1,10 +1,11 @@
 import React from 'react';
 import VideoPlayer from "../../components/videoPlayer";
-import {Button, Collapse, Divider, Tabs, theme} from "antd";
+import {Avatar, Button, Collapse, Divider, List, Tabs, theme} from "antd";
 import type {TabsProps} from 'antd';
 import StickyBox from 'react-sticky-box';
 import './index.css'
 import TabPane from "antd/es/tabs/TabPane";
+import {LikeOutlined, StarFilled} from "@ant-design/icons";
 
 const VideoDetails = () => {
     const {token: {colorBgContainer},} = theme.useToken();
@@ -13,6 +14,20 @@ const VideoDetails = () => {
             <DefaultTabBar {...props} style={{background: colorBgContainer}}/>
         </StickyBox>
     );
+    const data = [
+        {
+            title: 'Ant Design Title 1',
+        },
+        {
+            title: 'Ant Design Title 2',
+        },
+        {
+            title: 'Ant Design Title 3',
+        },
+        {
+            title: 'Ant Design Title 4',
+        },
+    ];
     return (
         <div className='video-container'>
             <VideoPlayer/>
@@ -60,19 +75,50 @@ const VideoDetails = () => {
                         <Collapse
                             expandIconPosition={"end"}
                             bordered={false}
-                            style={{textAlign:'left',marginBottom:'20px',backgroundColor:'#fff'}}
+                            style={{textAlign: 'left', marginBottom: '20px', backgroundColor: '#fff'}}
                             items={[
-                                { key: '1', label: '01 课程简介', children: <p>目录</p> },
-                                { key: '2', label: '02 第一节', children: <p>目录w22</p> },
-                                { key: '3', label: '01 课程简介', children: <p>目录</p> },
-                                { key: '4', label: '02 第一节', children: <p>目录w22</p> },
-                                { key: '5', label: '01 课程简介', children: <p>目录</p> },
-                                { key: '6', label: '02 第一节', children: <p>目录w22</p> },
+                                {key: '1', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '2', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '3', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '4', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '5', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '6', label: '02 第一节', children: <p>目录w22</p>},
                             ]}
                         />
                     </TabPane>
                     <TabPane tab="课程评价" key="3">
-                        我是tab3
+                        <List
+                            itemLayout="horizontal"
+                            dataSource={data}
+                            renderItem={(item, index) => (
+                                <List.Item>
+                                    <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+                                        <div style={{display: 'flex', justifyContent: 'flex-start'}}>
+                                            <div>
+                                                <Avatar
+                                                    src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}/>
+                                            </div>
+                                            <div className='evaluate-info'>
+                                                <div className='info-member'>
+                                                    <span>学员成</span>
+                                                    <span>11-06</span>
+                                                </div>
+                                                <span style={{color:'rgb(251,177,43',fontSize: '12px'}}>
+                                                    <StarFilled/>
+                                                    <StarFilled/>
+                                                    <StarFilled/>
+                                                    <StarFilled/>
+                                                </span>
+                                                <span className='evaluate-content'>讲的不错</span>
+                                            </div>
+                                        </div>
+                                        <div style={{margin:'auto 0'}}>
+                                            <LikeOutlined />
+                                        </div>
+                                    </div>
+                                </List.Item>
+                            )}
+                        />
                     </TabPane>
                 </Tabs>
             </div>
