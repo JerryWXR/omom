@@ -35,9 +35,18 @@
     font-family: YouYuan,  sans-serif;
 
 }
-.headerMenu div a:hover{
-    color: #aaa;
+.wrapperLeft div a.active{
+    color: black;
+}
+.active{
+    color: #0088cc;
+    text-decoration: underline;
 }
 .ant-modal-content{
     width: 400px;
+}
+.ant-menu{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
