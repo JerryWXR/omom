@@ -71,7 +71,7 @@ const Audible = () => {
                 {
                     banner.map((item, index) => {
                         return <div key={index}>
-                            <Image style={{width:'100vw',height:'100%'}} src={item.bannerUrl}/>
+                            <Image preview={false} style={{width:'100vw',height:'100%'}} src={item.bannerUrl}/>
                         </div>
                     })
                 }
@@ -113,7 +113,7 @@ const Audible = () => {
                     dataSource={data}
                     renderItem={(item, index) => (
                         <List.Item>
-                            <div className='list-info' onClick={relay}>
+                            <div className='list-top' onClick={relay}>
                                 <div>
                                     <Avatar className='video-avatar'
                                             src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}/>
@@ -124,14 +124,14 @@ const Audible = () => {
                                         <span>成为一个会说话的人</span>
                                         <span>薛艺</span>
                                     </div>
-                                    <div className='price-info'>
-                                        <div>
-                                            <span>¥</span>
-                                            <span>39</span>
-                                        </div>
-                                        <div>8172人参加</div>
-                                    </div>
                                 </div>
+                            </div>
+                            <div className='price-detail'>
+                                <div>
+                                    ¥ 39
+                                    {/*<span>39</span>*/}
+                                </div>
+                                <div>8172人参加</div>
                             </div>
                         </List.Item>
                     )}

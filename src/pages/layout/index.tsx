@@ -24,6 +24,7 @@ const Index = () => {
         paddingLeft:20,
         paddingRight:20,
         paddingBottom:10,
+        paddingTop:10,
         backgroundColor: 'rgb(222,222,222)'
     };
 
