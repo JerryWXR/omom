@@ -3,7 +3,7 @@ import VideoPlayer from "../../../components/videoPlayer";
 import {Avatar, Button, Collapse, Divider, List, Tabs, theme} from "antd";
 import type {TabsProps} from 'antd';
 import StickyBox from 'react-sticky-box';
-import './index.css'
+import './index.less'
 import TabPane from "antd/es/tabs/TabPane";
 import {LikeOutlined, StarFilled} from "@ant-design/icons";
 
@@ -77,6 +77,18 @@ const VideoDetails = () => {
                             bordered={false}
                             style={{textAlign: 'left', marginBottom: '20px', backgroundColor: '#fff'}}
                             items={[
+                                {key: '1', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '2', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '3', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '4', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '5', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '6', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '1', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '2', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '3', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '4', label: '02 第一节', children: <p>目录w22</p>},
+                                {key: '5', label: '01 课程简介', children: <p>目录</p>},
+                                {key: '6', label: '02 第一节', children: <p>目录w22</p>},
                                 {key: '1', label: '01 课程简介', children: <p>目录</p>},
                                 {key: '2', label: '02 第一节', children: <p>目录w22</p>},
                                 {key: '3', label: '01 课程简介', children: <p>目录</p>},

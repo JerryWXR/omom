@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import "./index.css"
+import "./index.less"
 import {withAuth} from "../../hooks/withLogin";
 import {Button, Divider} from "antd";
 import {World} from "../../types";
@@ -113,7 +113,6 @@ const LearnWord = () => {
                                         <span>助记</span>
                                         <AlignLeftOutlined style={{fontSize: "17px"}}/>
                                     </div>
-
                                     <Divider className="divider"></Divider>
                                     <div className="extendContent">
                                         <div>扩展</div>
@@ -137,7 +136,6 @@ const LearnWord = () => {
                             <div style={{fontSize: '16px', color: '#aaa'}}>点击屏幕显示答案</div>
                         </div>}
                 </div>
-
             </div>
 
         </div>

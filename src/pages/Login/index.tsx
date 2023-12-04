@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Checkbox, Form, Input} from 'antd';
-import "./index.css"
+import "./index.less"
 import styled from "@emotion/styled";
 import {getLoginStatus, login} from "../../services";
 import {TokenInfo, RESPONSE_STATUS} from "../../contants";

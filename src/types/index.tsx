@@ -31,6 +31,10 @@ export interface NewClass{
     title: string
 }
 export interface AllClass{
-    categoryName:string
+    avatar:string
     clickCount: number
+    description: string
+    id: number
+    nickname: string
+    title: string
 }

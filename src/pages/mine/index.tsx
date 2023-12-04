@@ -2,7 +2,7 @@ import React from 'react';
 import {withAuth} from "../../hooks/withLogin";
 // @ts-ignore
 import avatar from "../../assets/images/avatar.jpeg";
-import "./index.css"
+import "./index.less"
 import {Divider, Input} from "antd";
 
 const Mine = () => {

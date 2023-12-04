@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Card, Divider} from "antd";
 import Register from "../Register";
 import Login from "../Login";
-import "./index.css"
+import "./index.less"
 import {useAuth} from "../../hooks/withLogin";
 import {useNavigate} from "react-router-dom";
 

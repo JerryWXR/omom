@@ -14,8 +14,8 @@ export interface registerParams{
     verifyCode:string
 }
 export interface allClassParams{
-    pageNum:string,
-    pageSize:string,
+    pageNum:number,
+    pageSize:number,
 }
 export interface addClickParams{
     id:number
@@ -50,6 +50,6 @@ export const getAudibleClassAll = (params:allClassParams):Promise<Response<Array
     return get(`${API_BASE_URL}/index/course/list/all?pageNum=${params.pageNum}&pageSize=${params.pageSize}`)
 }
 // 点击课程点击量加1
-export const addClickCLass = (courseId:number) => {
+export const addClickCLass = (courseId:number):Promise<Response<void>> => {
     return post(`${API_BASE_URL}/index/course/count/add`, {courseId})
 }

@@ -1,28 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {Avatar, Card, Carousel, Divider, List, Image} from "antd";
-import "./index.css"
+import "./index.less"
 import {useNavigate} from "react-router-dom";
 import {addClickCLass, addClickParams, getAudibleBanner, getAudibleClassAll, getAudibleClassNew} from "../../services";
 import {AllClass, Banner, NewClass} from "../../types";
 
-interface Item {
-    id: number;
-    name: string;
-}
 
 const Audible = () => {
     const navigate = useNavigate();
     const [banner, setBanner] = useState<Array<Banner>>([])
     const [newClass, setNewClass] = useState<Array<NewClass>>([])
     const [allClass, setAllClass] = useState<Array<AllClass>>([]); // 保存数据的状态
-    const [pageNum, setPageNum] = useState(1); // 当前页数
+    const [pageNum, setPageNum] = useState<number>(1); // 当前页数
     // 视频播放
-    const relay =(itemId:number)=> (event:any) => {
+    const relay = (itemId: number) => (event: any) => {
         console.log(itemId)
         navigate('/videoDetails')
-        // addClickCLass(itemId).then((res)=>{
-        //     console.log(res)
-        // })
+        addClickCLass(itemId).then((res) => {
+            console.log(res)
+        })
     }
     const data = [
         {
@@ -62,27 +58,16 @@ const Audible = () => {
             title: 'Ant Design Title 4',
         },
     ];
-    const queryParams = {
-        pageNum: '1',
-        pageSize: '10'
-    }
     useEffect(() => {
-        const params = {
-            ...queryParams
-        }
         getAudibleBanner().then((res) => {
             setBanner(res.data)
         })
         getAudibleClassNew().then((res) => {
             setNewClass(res.data)
         })
-        // getAudibleClassAll(params).then((res)=>{
-        //     console.log(res)
-        // })
     }, [])
 
     useEffect(() => {
-        console.log('下拉了')
         window.addEventListener('scroll', handleScroll);
         loadData();
         return () => {
@@ -91,7 +76,6 @@ const Audible = () => {
     }, []);
 
     const handleScroll = () => {
-        console.log('123')
         if (
             window.innerHeight + window.scrollY >= document.body.offsetHeight &&
             data.length
@@ -101,20 +85,23 @@ const Audible = () => {
     };
 
     const loadData = () => {
+        const queryParams = {
+            pageNum: 1,
+            pageSize: 10
+        }
         // 模拟异步加载数据
         setTimeout(() => {
             const params = {
                 ...queryParams
             }
             // 获取下一页数据
-            console.log(pageNum)
-            // getAudibleClassAll(params).then((res) => {
-            //     console.log(res)
-            //     const nextPageData = res.data;
-            //     setAllClass((prevData) => [...prevData, ...nextPageData]);
-            //     setPageNum((prevPageNum) => prevPageNum + 1);
-            // })
-        }, 1000);
+            getAudibleClassAll(params).then((res) => {
+                const nextPageData = res.data;
+                setAllClass((prevData) => [...prevData, ...nextPageData]);
+                setPageNum(2)
+                console.log(pageNum)
+            })
+        }, 500);
     };
     return (
         <div className="audible-container">
@@ -129,7 +116,7 @@ const Audible = () => {
             </Carousel>
             <div className="list-container">
                 <div className="title-container">最新视频</div>
-                <div >
+                <div>
                     <List
                         grid={{
                             gutter: 20,
@@ -165,29 +152,26 @@ const Audible = () => {
                 <Divider/>
                 <List
                     itemLayout="horizontal"
-                    dataSource={data}
+                    dataSource={allClass}
                     renderItem={(item, index) => (
                         <List.Item>
                             <div style={{width: '100%'}}>
                                 <div className='list-top'>
                                     <div>
                                         <Avatar className='video-avatar'
-                                                src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}/>
+                                                src={item.avatar}/>
                                     </div>
                                     <div className='video-right'>
                                         <div className="video-info">
-                                            <span>12节表达能力提升课</span>
-                                            <span>成为一个会说话的人</span>
-                                            <span>薛艺</span>
+                                            <span>{item.title}</span>
+                                            <span>{item.description}</span>
+                                            <span>{item.nickname}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className='price-detail'>
-                                    <div>
-                                        ¥ 39
-                                        {/*<span>39</span>*/}
-                                    </div>
-                                    <div>8172人参加</div>
+                                    <div></div>
+                                    <div>{item.clickCount}</div>
                                 </div>
                             </div>
                         </List.Item>

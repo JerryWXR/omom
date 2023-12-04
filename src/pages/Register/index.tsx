@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Form, Input, Space} from 'antd';
-import "./index.css"
+import "./index.less"
 import { register} from "../../services";
 import {Response} from "../../types";
 import {RESPONSE_STATUS} from "../../contants";

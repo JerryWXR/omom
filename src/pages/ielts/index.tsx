@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css'
+import './index.less'
 import {Avatar, List, Space, Tag} from "antd";
 import {useNavigate} from "react-router-dom";
 
@@ -57,8 +57,8 @@ const IELTS = () => {
                 </div>
             </div>
             <div className='container-bottom'>
-                <span className='top-title'>雅思</span>
-                <div className='top-freeClass'>
+                <span className='bottom-title'>雅思</span>
+                <div className='bottom-freeClass'>
                     <List
                         itemLayout="horizontal"
                         dataSource={data}
