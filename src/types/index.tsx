@@ -30,3 +30,7 @@ export interface NewClass{
     nickname: string
     title: string
 }
+export interface AllClass{
+    categoryName:string
+    clickCount: number
+}

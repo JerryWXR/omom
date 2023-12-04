@@ -1,8 +1,10 @@
 import React from 'react';
 import './index.css'
 import {Avatar, List, Space, Tag} from "antd";
+import {useNavigate} from "react-router-dom";
 
 const IELTS = () => {
+    const navigate = useNavigate()
     const data = [
         {
             title: 'Ant Design Title 1',
@@ -17,6 +19,9 @@ const IELTS = () => {
             title: 'Ant Design Title 4',
         },
     ];
+    const toDetail = () => {
+        navigate('/ieltsDetail')
+    }
     return (
         <div className='ielts-container'>
             <div className='container-top'>
@@ -25,8 +30,9 @@ const IELTS = () => {
                     <List
                         itemLayout="horizontal"
                         dataSource={data}
+
                         renderItem={(item, index) => (
-                            <List.Item>
+                            <List.Item onClick={toDetail}>
                                 <div className='list-info'>
                                     <div className='info-left'>
                                         <div>

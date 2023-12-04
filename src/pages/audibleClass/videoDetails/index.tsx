@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoPlayer from "../../components/videoPlayer";
+import VideoPlayer from "../../../components/videoPlayer";
 import {Avatar, Button, Collapse, Divider, List, Tabs, theme} from "antd";
 import type {TabsProps} from 'antd';
 import StickyBox from 'react-sticky-box';

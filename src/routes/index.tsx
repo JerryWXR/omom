@@ -5,8 +5,9 @@ import ReStudy from "../pages/reStudy"
 import Mine from "../pages/mine";
 import UnauthenticatedApp from "../pages/unauthenticated-app";
 import Audible from "../pages/audibleClass";
-import VideoDetails from "../pages/videoDetails";
+import VideoDetails from "../pages/audibleClass/videoDetails";
 import IELTS from "../pages/ielts";
+import ClassDetail from "../pages/ielts/detail";
 
 const router = [
     // {
@@ -35,9 +36,15 @@ const router = [
         element: <IELTS/>,
     },
     {
+        path:'/ieltsDetail',
+        element: <ClassDetail/>
+    },
+    // 背单词
+    {
         path:'/learnWord',
         element: <LearnWord/>
     },
+
     {
         path:'/reStudy',
         element: <ReStudy/>

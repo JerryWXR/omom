@@ -1,4 +1,4 @@
-import {Banner, LoginInfo, NewClass, Response, World} from "../types";
+import {AllClass, Banner, LoginInfo, NewClass, Response, World} from "../types";
 import {get, post} from "../utils/request";
 
 
@@ -12,6 +12,13 @@ export interface registerParams{
     password:string,
     phone:string,
     verifyCode:string
+}
+export interface allClassParams{
+    pageNum:string,
+    pageSize:string,
+}
+export interface addClickParams{
+    id:number
 }
 
 // 登录
@@ -37,4 +44,12 @@ export const getAudibleBanner = ():Promise<Response<Array<Banner>>> => {
 //获取有声课堂最新课程
 export const getAudibleClassNew = ():Promise<Response<Array<NewClass>>> => {
     return get(`${API_BASE_URL}/index/course/list/newest`)
+}
+//全部视频
+export const getAudibleClassAll = (params:allClassParams):Promise<Response<Array<AllClass>>> => {
+    return get(`${API_BASE_URL}/index/course/list/all?pageNum=${params.pageNum}&pageSize=${params.pageSize}`)
+}
+// 点击课程点击量加1
+export const addClickCLass = (courseId:number) => {
+    return post(`${API_BASE_URL}/index/course/count/add`, {courseId})
 }

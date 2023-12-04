@@ -39,8 +39,6 @@
 .info-left{
     display: flex;
 }
-
-
 .list-desc{
     display: flex;
     flex-direction: column;
