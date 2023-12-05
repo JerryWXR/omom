@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import './index.less'
-import {Avatar, Card, Empty, Image, List, Tabs, TabsProps, Tag, theme} from 'antd';
+import {Avatar, Card, Collapse, Divider, Empty, Image, List, Tabs, TabsProps, Tag, theme} from 'antd';
 import StickyBox from "react-sticky-box";
 import TabPane from "antd/es/tabs/TabPane";
-import {CaretRightFilled, CustomerServiceFilled, LikeOutlined, StarFilled} from "@ant-design/icons";
+import {CaretRightFilled, CustomerServiceFilled, LikeOutlined, StarFilled, VideoCameraFilled} from "@ant-design/icons";
 
 const ClassDetail = () => {
     const {token: {colorBgContainer},} = theme.useToken();
     const [activeTab, setActiveTab] = useState<string>("0");
     const [currentTab, setCurrentTab] = useState(0);
-
+    const [timetableTag, setTimetableTag] = useState(0);
     const renderTabBar: TabsProps['renderTabBar'] = (props, DefaultTabBar) => (
         <StickyBox offsetTop={0} offsetBottom={20} style={{zIndex: 1}}>
             <DefaultTabBar {...props} style={{background: colorBgContainer}}/>
@@ -17,6 +17,9 @@ const ClassDetail = () => {
     );
     const changeTag = (index: number) => {
         setCurrentTab(index)
+    }
+    const changeTimetableTag = (index: number) => {
+        setTimetableTag(index)
     }
     const data = [
         {
@@ -132,13 +135,94 @@ const ClassDetail = () => {
                     </div>
                 </TabPane>
                 <TabPane tab="课程表" key="3">
+                    <div className='container-timetable'>
+                        <div className='timetable-title'>课程表</div>
+                        <Divider/>
+                        <div className='top-tags'>
+                            <Tag onClick={() => changeTimetableTag(0)}
+                                 className={timetableTag == 0 ? 'active' : ''}>课程安排</Tag>
+                            <Tag onClick={() => changeTimetableTag(1)}
+                                 className={timetableTag == 1 ? 'active' : ''}>微信公众号</Tag>
+                            <Tag onClick={() => changeTimetableTag(2)}
+                                 className={timetableTag == 2 ? 'active' : ''}>23年留学申请指南</Tag>
+                            <Tag onClick={() => changeTimetableTag(3)}
+                                 className={timetableTag == 3 ? 'active' : ''}>9月-12月口语新题</Tag>
+                        </div>
+                        <div className='tag-container'>
+                            {timetableTag == 0 && <div>
+                                <div className='tag-title'>直播课程</div>
 
+                                <List
+                                    className='tag-list'
+                                    itemLayout="horizontal"
+                                    dataSource={data}
+                                    renderItem={(item, index) => (
+                                        <div className='list-container'>
+                                            <div>{index + 1}</div>
+                                            <div className='list-content'>
+                                                <Divider/>
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        title={<a href="https://ant.design">{item.title}</a>}
+                                                        description={
+                                                            <div className='broadcast-desc'>
+                                                                <div>
+                                                                    <VideoCameraFilled/>
+                                                                    <span>直播</span>
+                                                                    <span>|</span>
+                                                                </div>
+                                                                <div>11.04 20:30 - 22:00</div>
+                                                                <div>等待直播</div>
+                                                            </div>
+                                                        }
+                                                    />
+                                                </List.Item>
+                                            </div>
+                                        </div>
+                                    )}
+                                />
+                                <Divider/>
+                                <div className='tag-title'>入学测试</div>
+
+                                <List
+                                    className='tag-list'
+                                    itemLayout="horizontal"
+                                    dataSource={data}
+                                    renderItem={(item, index) => (
+                                        <div className='list-container'>
+                                            <div>{index + 1}</div>
+                                            <div className='list-content'>
+                                                <Divider/>
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        title={<a href="https://ant.design">{item.title}</a>}
+                                                        description={
+                                                            <div className='broadcast-desc'>
+                                                                <div>
+                                                                    <VideoCameraFilled/>
+                                                                    <span>直播</span>
+                                                                    <span>|</span>
+                                                                </div>
+                                                                <div>11.04 20:30 - 22:00</div>
+                                                                <div>等待直播</div>
+                                                            </div>
+                                                        }
+                                                    />
+                                                </List.Item>
+                                            </div>
+                                        </div>
+                                    )}
+                                />
+                                <Divider/>
+                            </div>}
+                        </div>
+                    </div>
                 </TabPane>
             </Tabs>
             <div className="fixed-bottom">
                 {/* 固定在底部的内容 */}
                 <div className='bottom-left'>
-                    <CustomerServiceFilled />
+                    <CustomerServiceFilled/>
                     <div>客服</div>
                 </div>
                 <button className='bottom-right'>立即报名</button>
