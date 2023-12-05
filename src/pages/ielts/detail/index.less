@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
 
   .ant-tabs {
     width: 100%;
@@ -98,10 +99,11 @@
       background-color: #ffffff;
       text-align: left;
       padding: 0 10px;
-      min-height: 120px;
+      min-height: 150px;
 
       .teacher-title {
         font-size: 16px;
+        padding:20px 0 10px;
       }
 
       .teacher-card {
@@ -140,7 +142,50 @@
 
       .class-title {
         font-size: 16px;
+        padding:20px 0 10px;
       }
+    }
+
+    .container-evaluate {
+      margin-top: 10px;
+      background-color: #ffffff;
+      text-align: left;
+      padding: 0 20px;
+      min-height: 200px;
+
+      .evaluate-title {
+        font-size: 16px;
+        padding:20px 0 10px;
+      }
+    }
+  }
+  .fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* 底部内容的高度 */
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    .bottom-left{
+      width: 5%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      font-size: 14px;
+    }
+    .bottom-right{
+      width: 95%;
+      background-color: rgb(236,47,46);
+      height: 40px;
+      border: 0;
+      border-radius: 5px;
+      color: #ffffff;
     }
   }
 

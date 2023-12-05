@@ -69,7 +69,7 @@ const Audible = () => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        loadData();
+        //loadData();
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -80,13 +80,20 @@ const Audible = () => {
             window.innerHeight + window.scrollY >= document.body.offsetHeight &&
             data.length
         ) {
-            loadData();
+            setPageNum((origin)=> {
+                return origin + 1
+            })
         }
     };
 
+    useEffect(() => {
+        loadData();
+    }, [pageNum])
+
     const loadData = () => {
+        console.log(pageNum)
         const queryParams = {
-            pageNum: 1,
+            pageNum: pageNum,
             pageSize: 10
         }
         // 模拟异步加载数据
@@ -98,8 +105,6 @@ const Audible = () => {
             getAudibleClassAll(params).then((res) => {
                 const nextPageData = res.data;
                 setAllClass((prevData) => [...prevData, ...nextPageData]);
-                setPageNum(2)
-                console.log(pageNum)
             })
         }, 500);
     };
