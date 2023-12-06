@@ -1,0 +1,47 @@
+.button-container{
+  display: flex;
+}
+.bubble-button {
+  width: 100px;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(242,242,242);
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  .triangle {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgb(25,197,107);
+  }
+  .bubble-button:hover {
+    background-color: rgb(25,197,107);
+  }
+
+}
+.active{
+  color: #000;
+  background-color: rgb(25,197,107);
+}
+.button-title{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+
+
+
+
+
+

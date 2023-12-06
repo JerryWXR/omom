@@ -21,6 +21,7 @@ export interface Banner{
     bannerUrl:string
 }
 
+// 有声课堂最新
 export interface NewClass{
     categoryName:string
     clickCount: number
@@ -30,6 +31,7 @@ export interface NewClass{
     nickname: string
     title: string
 }
+// 有声课堂全部
 export interface AllClass{
     avatar:string
     clickCount: number
@@ -37,4 +39,20 @@ export interface AllClass{
     id: number
     nickname: string
     title: string
+}
+// 有声课堂详情
+export interface AudibleClassDetail{
+    description: string
+    title: string
+    tutorAvatar: string
+    tutorName: string
+    tutorTitle: string
+}
+export interface AudiblePart{
+    courseId: number
+    id: string
+    partDescription: string
+    partSort: number
+    partTitle: string
+    partUrl: string
 }

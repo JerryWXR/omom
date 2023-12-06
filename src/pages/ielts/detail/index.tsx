@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './index.less'
-import {Avatar, Card, Collapse, Divider, Empty, Image, List, Tabs, TabsProps, Tag, theme} from 'antd';
+import {Avatar, Card, Divider, Empty, Image, List, Tabs, TabsProps, Tag, theme} from 'antd';
 import StickyBox from "react-sticky-box";
 import TabPane from "antd/es/tabs/TabPane";
 import {CaretRightFilled, CustomerServiceFilled, LikeOutlined, StarFilled, VideoCameraFilled} from "@ant-design/icons";
 
 const ClassDetail = () => {
     const {token: {colorBgContainer},} = theme.useToken();
-    const [activeTab, setActiveTab] = useState<string>("0");
     const [currentTab, setCurrentTab] = useState(0);
     const [timetableTag, setTimetableTag] = useState(0);
     const renderTabBar: TabsProps['renderTabBar'] = (props, DefaultTabBar) => (
@@ -21,6 +20,9 @@ const ClassDetail = () => {
     const changeTimetableTag = (index: number) => {
         setTimetableTag(index)
     }
+    useEffect(()=>{
+
+    },[])
     const data = [
         {
             title: 'Ant Design Title 1',
@@ -88,7 +90,6 @@ const ClassDetail = () => {
                     <div className='container-class'>
                         <div className='class-title'>课程详情</div>
                     </div>
-
                 </TabPane>
                 <TabPane tab="评价" key="2">
                     <div className='container-evaluate'>
@@ -151,7 +152,6 @@ const ClassDetail = () => {
                         <div className='tag-container'>
                             {timetableTag == 0 && <div>
                                 <div className='tag-title'>直播课程</div>
-
                                 <List
                                     className='tag-list'
                                     itemLayout="horizontal"
@@ -183,7 +183,6 @@ const ClassDetail = () => {
                                 />
                                 <Divider/>
                                 <div className='tag-title'>入学测试</div>
-
                                 <List
                                     className='tag-list'
                                     itemLayout="horizontal"
@@ -214,6 +213,93 @@ const ClassDetail = () => {
                                     )}
                                 />
                                 <Divider/>
+                            </div>}
+                            {timetableTag == 1 && <div>
+                                <div className='tag-title'>关注微信号更多干货</div>
+                                <List
+                                    className='tag-list'
+                                    itemLayout="horizontal"
+                                    dataSource={data}
+                                    renderItem={(item, index) => (
+                                        <div className='list-container'>
+                                            <div>{index + 1}</div>
+                                            <div className='list-content'>
+                                                <Divider/>
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        title={<a href="https://ant.design">{item.title}</a>}
+                                                        description={<div className='broadcast-desc'>
+                                                            <div>
+                                                                <VideoCameraFilled/>
+                                                                <span>直播</span>
+                                                                <span>|</span>
+                                                            </div>
+                                                            <div>11.04 20:30 - 22:00</div>
+                                                            <div>等待直播</div>
+                                                        </div>}
+                                                    />
+                                                </List.Item>
+                                            </div>
+                                        </div>
+                                    )}/>
+                            </div>}
+                            {timetableTag == 2 && <div>
+                                <div className='tag-title'>留学申请趋势分析</div>
+                                <List
+                                    className='tag-list'
+                                    itemLayout="horizontal"
+                                    dataSource={data}
+                                    renderItem={(item, index) => (
+                                        <div className='list-container'>
+                                            <div>{index + 1}</div>
+                                            <div className='list-content'>
+                                                <Divider/>
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        title={<a href="https://ant.design">{item.title}</a>}
+                                                        description={<div className='broadcast-desc'>
+                                                            <div>
+                                                                <VideoCameraFilled/>
+                                                                <span>直播</span>
+                                                                <span>|</span>
+                                                            </div>
+                                                            <div>11.04 20:30 - 22:00</div>
+                                                            <div>等待直播</div>
+                                                        </div>}
+                                                    />
+                                                </List.Item>
+                                            </div>
+                                        </div>
+                                    )}/>
+                            </div>}
+                            {timetableTag == 3 && <div>
+                                <div className='tag-title'>添加专属顾问获取最新题库</div>
+                                <List
+                                    className='tag-list'
+                                    itemLayout="horizontal"
+                                    dataSource={data}
+                                    renderItem={(item, index) => (
+                                        <div className='list-container'>
+                                            <div>{index + 1}</div>
+                                            <div className='list-content'>
+                                                <Divider/>
+                                                <List.Item>
+                                                    <List.Item.Meta
+                                                        title={<a href="https://ant.design">{item.title}</a>}
+                                                        description={<div className='broadcast-desc'>
+                                                            <div>
+                                                                <VideoCameraFilled/>
+                                                                <span>直播</span>
+                                                                <span>|</span>
+                                                            </div>
+                                                            <div>11.04 20:30 - 22:00</div>
+                                                            <div>等待直播</div>
+                                                        </div>}
+                                                    />
+                                                </List.Item>
+                                            </div>
+                                        </div>
+                                    )}/>
                             </div>}
                         </div>
                     </div>

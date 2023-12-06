@@ -8,6 +8,7 @@ import Audible from "../pages/audibleClass";
 import VideoDetails from "../pages/audibleClass/videoDetails";
 import IELTS from "../pages/ielts";
 import ClassDetail from "../pages/ielts/detail";
+import CollegeEnglish from "../pages/collegeEnglish";
 
 const router = [
     // {
@@ -22,7 +23,7 @@ const router = [
     },
     // 视频播放
     {
-        path:'/videoDetails',
+        path:'/videoDetails/:itemId',
         element: <VideoDetails/>
     },
     // 有声课堂
@@ -43,6 +44,11 @@ const router = [
     {
         path:'/learnWord',
         element: <LearnWord/>
+    },
+    // 大学应试英语
+    {
+        path:'/collegeEnglish',
+        element: <CollegeEnglish />
     },
 
     {

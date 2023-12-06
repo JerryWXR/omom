@@ -102,6 +102,45 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+
+      .container-teacher {
+        margin-top: 10px;
+        background-color: #ffffff;
+        text-align: left;
+        //padding: 0 10px;
+        min-height: 150px;
+
+        .teacher-title {
+          font-size: 14px;
+          padding: 20px 0 10px;
+        }
+
+        .teacher-card {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+
+          .card-avatar {
+            width: 50px;
+            height: 50px;
+          }
+
+          .card-name {
+            display: flex;
+            flex-direction: column;
+
+            span:last-child {
+              font-size: 12px;
+              color: rgb(176, 185, 192);
+            }
+          }
+
+          div:last-child {
+            color: rgb(176, 185, 192);
+          }
+        }
+      }
     }
 
 

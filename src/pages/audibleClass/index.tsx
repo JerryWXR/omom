@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {Avatar, Card, Carousel, Divider, List, Image} from "antd";
 import "./index.less"
 import {useNavigate} from "react-router-dom";
-import {addClickCLass, addClickParams, getAudibleBanner, getAudibleClassAll, getAudibleClassNew} from "../../services";
+import {addClickClass, addClickParams, getAudibleBanner, getAudibleClassAll, getAudibleClassNew} from "../../services";
 import {AllClass, Banner, NewClass} from "../../types";
 
 
 const Audible = () => {
+    // const history = useHistory()
     const navigate = useNavigate();
     const [banner, setBanner] = useState<Array<Banner>>([])
     const [newClass, setNewClass] = useState<Array<NewClass>>([])
@@ -15,8 +16,8 @@ const Audible = () => {
     // 视频播放
     const relay = (itemId: number) => (event: any) => {
         console.log(itemId)
-        navigate('/videoDetails')
-        addClickCLass(itemId).then((res) => {
+        navigate(`/videoDetails/${itemId}`);
+        addClickClass(itemId).then((res) => {
             console.log(res)
         })
     }
@@ -143,7 +144,7 @@ const Audible = () => {
                                         <div>{item.categoryName}</div>
                                         <div>{item.description}</div>
                                         <div className='price-info'>
-                                            <div>{item.clickCount}人</div>
+                                            <div>{item.clickCount?item.clickCount:0}人</div>
                                         </div>
                                     </div>
                                 </Card>
@@ -176,7 +177,7 @@ const Audible = () => {
                                 </div>
                                 <div className='price-detail'>
                                     <div></div>
-                                    <div>{item.clickCount}</div>
+                                    <div>{item.clickCount?item.clickCount:0}</div>
                                 </div>
                             </div>
                         </List.Item>

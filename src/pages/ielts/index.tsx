@@ -30,7 +30,6 @@ const IELTS = () => {
                     <List
                         itemLayout="horizontal"
                         dataSource={data}
-
                         renderItem={(item, index) => (
                             <List.Item onClick={toDetail}>
                                 <div className='list-info'>
@@ -63,7 +62,7 @@ const IELTS = () => {
                         itemLayout="horizontal"
                         dataSource={data}
                         renderItem={(item, index) => (
-                            <List.Item>
+                            <List.Item onClick={toDetail}>
                                 <div className='list-info'>
                                     <div className='info-left'>
                                         <div>

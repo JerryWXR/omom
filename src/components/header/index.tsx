@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import "./index.css"
+import "./index.less"
 // @ts-ignore
 import English from "../../assets/images/English.jpg"
 // @ts-ignore
@@ -31,7 +31,7 @@ const items: MenuProps['items'] = [
     },
     {
         label: '大学应试英语',
-        key: '/reStudy',
+        key: '/collegeEnglish',
     },
     {
         label: '大学生竞赛',
