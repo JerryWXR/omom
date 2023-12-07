@@ -47,6 +47,18 @@ export interface AudibleClassDetail{
     tutorAvatar: string
     tutorName: string
     tutorTitle: string
+    courseCol:CourseCol
+    subsCount:number
+}
+interface CourseCol{
+    courseCollectionList:[
+        {
+            courseId: number
+            courseTitle: string
+            cover:string
+        }
+    ]
+    courseCollectionTitle:string
 }
 export interface AudiblePart{
     courseId: number

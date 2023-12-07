@@ -18,7 +18,7 @@ interface VideoProps {
     className?: string;
 }
 const VideoPlayer: React.FC<VideoProps> = ({
-                                         // src,
+                                         // src='https://haokan.baidu.com/v?pd=wisenatural&vid=16956352271853885370',
                                          width = 400,
                                          height = 300,
                                          className,
@@ -70,7 +70,7 @@ const VideoPlayer: React.FC<VideoProps> = ({
             playsInline
             width={width}
             ref={videoRef}
-            data-src={'https://haokan.baidu.com/v?vid=11649224466824635285&'} // 添加 data-src 属性
+            data-src={'https://haokan.baidu.com/v?pd=wisenatural&vid=16956352271853885370'} // 添加 data-src 属性
             height={height}
             className='video-player'
         />

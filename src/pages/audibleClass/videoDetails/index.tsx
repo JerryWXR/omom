@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import VideoPlayer from "../../../components/videoPlayer";
-import {Avatar, Button, Card, Collapse, Divider, List, Tabs, theme} from "antd";
+import {Avatar, Button, Card, Collapse, Divider, Image, List, Tabs, theme} from "antd";
 import type {TabsProps} from 'antd';
 import StickyBox from 'react-sticky-box';
 import './index.less'
@@ -84,14 +84,22 @@ const VideoDetails = () => {
                                 </div>
                                 <div>
                                     <span>¥ 299</span>
-                                    <span>已有266人参加</span>
+                                    <span>{intro?.subsCount}</span>
                                 </div>
                             </div>
                             <Divider></Divider>
                             <div className='class-package'>
                                 <div className='package-name'>
-                                    <div>橘子老师AI课</div>
-                                    <div>图片</div>
+                                    <div>{intro?.courseCol.courseCollectionTitle}</div>
+                                    <div style={{display:'flex'}}>
+                                        {
+                                            intro?.courseCol.courseCollectionList.map((item,index)=> {
+                                                return <div key={index} style={{marginRight:'10px'}}>
+                                                    <Image preview={false} style={{width: '120px', height: '80px'}} src={item.cover}/>
+                                                </div>
+                                            })
+                                        }
+                                    </div>
                                 </div>
                                 <div className='package-price'>
                                     <div className='price-info'>
