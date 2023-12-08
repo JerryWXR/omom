@@ -18,7 +18,7 @@ const router = [
     // },
     {
         path:'/',
-        element:<Home/>,
+        element:<Audible/>,
 
     },
     // 视频播放

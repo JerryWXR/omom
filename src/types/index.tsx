@@ -66,5 +66,14 @@ export interface AudiblePart{
     partDescription: string
     partSort: number
     partTitle: string
-    partUrl: string
+    partUrl: string,
+    isTry:number,
+}
+// 订阅课程
+export interface Subscribe{
+    courseId: number
+}
+// 检查订阅
+export interface CheckSubscribe{
+    isSubs: boolean
 }

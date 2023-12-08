@@ -9,20 +9,22 @@
  *   import Video from '@/components/Video';
  *   <Video src="<https://www.w3schools.com/html/mov_bbb.mp4>" />
  */
-import React, { useRef, useEffect } from "react";
+import React, {useRef, useEffect} from "react";
 import './index.css'
+
 interface VideoProps {
-    // src: string;
+    playUrl: string;
     width?: number | string;
     height?: number | string;
     className?: string;
 }
+
 const VideoPlayer: React.FC<VideoProps> = ({
-                                         // src='https://haokan.baidu.com/v?pd=wisenatural&vid=16956352271853885370',
-                                         width = 400,
-                                         height = 300,
-                                         className,
-                                     }) => {
+                                               playUrl,
+                                               width = 400,
+                                               height = 300,
+                                               className,
+                                           }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     useEffect(() => {
         const video = videoRef.current;
@@ -70,7 +72,7 @@ const VideoPlayer: React.FC<VideoProps> = ({
             playsInline
             width={width}
             ref={videoRef}
-            data-src={'https://haokan.baidu.com/v?pd=wisenatural&vid=16956352271853885370'} // 添加 data-src 属性
+            data-src={playUrl} // 添加 data-src 属性
             height={height}
             className='video-player'
         />

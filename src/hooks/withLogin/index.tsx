@@ -33,5 +33,10 @@ export const withAuth = (Component:FC<any>)=>() => {
     // 否则回到登录页
     // const returnUrl: string = window.location.href;
     // window.location.replace(`/login`)
-    return <></>
+    return <>
+        {
+            <div>
+            请登录
+        </div>}
+    </>
 }

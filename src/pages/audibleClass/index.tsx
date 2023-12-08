@@ -7,7 +7,6 @@ import {AllClass, Banner, NewClass} from "../../types";
 
 
 const Audible = () => {
-    // const history = useHistory()
     const navigate = useNavigate();
     const [banner, setBanner] = useState<Array<Banner>>([])
     const [newClass, setNewClass] = useState<Array<NewClass>>([])
@@ -15,10 +14,8 @@ const Audible = () => {
     const [pageNum, setPageNum] = useState<number>(1); // 当前页数
     // 视频播放
     const relay = (itemId: number) => (event: any) => {
-        console.log(itemId)
         navigate(`/videoDetails/${itemId}`);
         addClickClass(itemId).then((res) => {
-            console.log(res)
         })
     }
     const data = [
@@ -81,7 +78,7 @@ const Audible = () => {
             window.innerHeight + window.scrollY >= document.body.offsetHeight &&
             data.length
         ) {
-            setPageNum((origin)=> {
+            setPageNum((origin) => {
                 return origin + 1
             })
         }
@@ -92,7 +89,6 @@ const Audible = () => {
     }, [pageNum])
 
     const loadData = () => {
-        console.log(pageNum)
         const queryParams = {
             pageNum: pageNum,
             pageSize: 10
@@ -144,7 +140,7 @@ const Audible = () => {
                                         <div>{item.categoryName}</div>
                                         <div>{item.description}</div>
                                         <div className='price-info'>
-                                            <div>{item.clickCount?item.clickCount:0}人</div>
+                                            <div>{item.clickCount ? item.clickCount : 0}人</div>
                                         </div>
                                     </div>
                                 </Card>
@@ -177,7 +173,7 @@ const Audible = () => {
                                 </div>
                                 <div className='price-detail'>
                                     <div></div>
-                                    <div>{item.clickCount?item.clickCount:0}</div>
+                                    <div>{item.clickCount ? item.clickCount : 0}</div>
                                 </div>
                             </div>
                         </List.Item>

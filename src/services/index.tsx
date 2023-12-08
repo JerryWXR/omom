@@ -1,4 +1,14 @@
-import {AllClass, AudibleClassDetail, AudiblePart, Banner, LoginInfo, NewClass, Response, World} from "../types";
+import {
+    AllClass,
+    AudibleClassDetail,
+    AudiblePart,
+    Banner, CheckSubscribe,
+    LoginInfo,
+    NewClass,
+    Response,
+    Subscribe,
+    World
+} from "../types";
 import {get, post} from "../utils/request";
 
 
@@ -57,6 +67,15 @@ export const addClickClass = (courseId:number):Promise<Response<void>> => {
 export const getClassDetail = (courseId:number):Promise<Response<AudibleClassDetail>> => {
     return get(`${API_BASE_URL}/course/intro?courseId=${courseId}`)
 }
+// 获取课程目录
 export const getClassPart = (courseId:number):Promise<Response<Array<AudiblePart>>> => {
     return get(`${API_BASE_URL}/course/part/list?courseId=${courseId}`)
+}
+//订阅课程
+export const subscribeClass = (params: Subscribe):Promise<Response<string>> => {
+    return post(`${API_BASE_URL}/course/subscribe`,params)
+}
+//检查订阅
+export const checkSubscribe = (courseId: number):Promise<Response<CheckSubscribe>> => {
+    return get(`${API_BASE_URL}/course/subscribe/check?courseId=${courseId}`)
 }

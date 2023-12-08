@@ -1,62 +1,79 @@
 import React, {useEffect, useState} from 'react';
 import VideoPlayer from "../../../components/videoPlayer";
-import {Avatar, Button, Card, Collapse, Divider, Image, List, Tabs, theme} from "antd";
+import {Avatar, Button, Card, Divider, Image, List, Modal, Tabs, theme} from "antd";
 import type {TabsProps} from 'antd';
 import StickyBox from 'react-sticky-box';
 import './index.less'
 import TabPane from "antd/es/tabs/TabPane";
-import {CaretRightFilled, DownOutlined, LikeOutlined, RightOutlined, StarFilled} from "@ant-design/icons";
-import {getClassDetail, getClassPart} from "../../../services";
+import {
+    CaretRightFilled,
+    CustomerServiceFilled,
+    DownOutlined,
+    LikeOutlined,
+    RightOutlined,
+    StarFilled
+} from "@ant-design/icons";
+import {checkSubscribe, getClassDetail, getClassPart, getLoginStatus, subscribeClass} from "../../../services";
 import {useParams} from "react-router-dom";
-import {AudibleClassDetail, AudiblePart} from "../../../types";
+import {AudibleClassDetail, AudiblePart, Subscribe} from "../../../types";
+import UnauthenticatedApp from "../../unauthenticated-app";
+import {RESPONSE_STATUS} from "../../../contants";
 
-const CourseItem: React.FC<{ course: AudiblePart }> = ({course}) => {
+interface Props {
+    course: AudiblePart;
+    onValueChange: (value: string) => void;
+}
+
+// 封装目录
+const CourseItem: React.FC<Props> = ({course, onValueChange}) => {
     const [expanded, setExpanded] = useState(false);
-
+    const [playUrl, setPlayUrl] = useState<string>('')
+    const partPlay = (partUrl: string) => {
+        setPlayUrl(partUrl)
+        onValueChange(partUrl);
+    }
     const toggleExpand = () => {
         setExpanded((prevExpanded) => !prevExpanded);
     };
-
+    // 播放小节视频
     return (
-        <div onClick={toggleExpand} style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            textAlign: 'left',
-            marginBottom: '20px',
-            backgroundColor: '#fff'
-        }}>
-            <div style={{display: 'block'}}>
-                <span style={{
-                    fontSize: '16px',
-                    marginRight: '5px'
-                }}>{course.partSort < 10 ? '0' + course.partSort : course.partSort}</span>
-                <span style={{fontSize: '16px'}}>{course.partTitle}</span>
-                {expanded && <p style={{
-                    marginTop: '10px',
-                    color: 'rgb(143, 143, 143)',
-                    fontSize: '12px'
-                }}>{course.partDescription}</p>}
+        <div className='course-container'>
+            <div className='container-left'>
+                <div onClick={toggleExpand}>
+                    <span className='left-sort'>{course.partSort < 10 ? '0' + course.partSort : course.partSort}</span>
+                    <span className='left-title'>{course.partTitle}</span>
+                    {
+                        course.isTry == 1 ? <span className='left-try'>试看</span> : <></>
+                    }
+                </div>
+                {
+                    expanded &&
+                    <p className='left-item' onClick={() => {
+                        partPlay(course?.partUrl)
+                    }}>
+                        <span>{course.partDescription}</span>
+                        {
+                            course.isTry == 1 ? <span className='item-try'>试看</span> : <></>
+                        }
+                    </p>
+                }
             </div>
             <div>
                 {expanded ? <DownOutlined/> : <RightOutlined/>}
             </div>
-
         </div>
     );
 };
+
 const VideoDetails = () => {
+    const [valueFromChild, setValueFromChild] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [intro, setIntro] = useState<AudibleClassDetail>()
+    const [part, setPart] = useState<Array<AudiblePart>>()
+    const [isSubscribe, setIsSubscribe] = useState<boolean>()
     const {token: {colorBgContainer},} = theme.useToken();
     const {itemId} = useParams<{ itemId: string }>();
     const courseId = parseInt(itemId as string, 10);
-    const [intro, setIntro] = useState<AudibleClassDetail>()
-    const [part, setPart] = useState<Array<AudiblePart>>()
-
-    // tab栏吸附
-    const renderTabBar: TabsProps['renderTabBar'] = (props, DefaultTabBar) => (
-        <StickyBox offsetTop={0} offsetBottom={20} style={{zIndex: 1}}>
-            <DefaultTabBar {...props} style={{background: colorBgContainer}}/>
-        </StickyBox>
-    );
     useEffect(() => {
         // 课程详情
         getClassDetail(courseId).then((res) => {
@@ -66,11 +83,50 @@ const VideoDetails = () => {
         getClassPart(courseId).then((res) => {
             setPart(res.data)
         })
+        // 检查订阅
+        checkSubscribe(courseId).then((res) => {
+            setIsSubscribe(res.data.isSubs)
+        })
     }, [])
-
+    const handleValueChange = (value: string) => {
+        setValueFromChild(value);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+    const getIsLogin = (data: boolean) => {
+        if (data) {
+            setIsModalOpen(false);
+        }
+    }
+    // 订阅
+    const subscribe = () => {
+        getLoginStatus().then((res) => {
+            // 设置登录状态
+            if (res.data.isLogin) {
+                const params: Subscribe = {
+                    courseId: courseId
+                }
+                subscribeClass(params).then((res) => {
+                    if (res.retCode == RESPONSE_STATUS.SUCCESS) {
+                        setIsSubscribe(true)
+                        return res.data
+                    }
+                })
+            } else if (!res.data.isLogin) {
+                setIsModalOpen(true);
+            }
+        })
+    }
+    // tab栏吸附
+    const renderTabBar: TabsProps['renderTabBar'] = (props, DefaultTabBar) => (
+        <StickyBox offsetTop={0} offsetBottom={20} style={{zIndex: 1}}>
+            <DefaultTabBar {...props} style={{background: colorBgContainer}}/>
+        </StickyBox>
+    );
     return (
         <div className='video-container'>
-            <VideoPlayer/>
+            <VideoPlayer playUrl={valueFromChild}/>
             <div className='tabs-container'>
                 <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
                     <TabPane tab="课程介绍" key="1">
@@ -91,11 +147,12 @@ const VideoDetails = () => {
                             <div className='class-package'>
                                 <div className='package-name'>
                                     <div>{intro?.courseCol.courseCollectionTitle}</div>
-                                    <div style={{display:'flex'}}>
+                                    <div style={{display: 'flex'}}>
                                         {
-                                            intro?.courseCol.courseCollectionList.map((item,index)=> {
-                                                return <div key={index} style={{marginRight:'10px'}}>
-                                                    <Image preview={false} style={{width: '120px', height: '80px'}} src={item.cover}/>
+                                            intro?.courseCol.courseCollectionList.map((item, index) => {
+                                                return <div key={index} style={{marginRight: '10px'}}>
+                                                    <Image preview={false} style={{width: '120px', height: '80px'}}
+                                                           src={item.cover}/>
                                                 </div>
                                             })
                                         }
@@ -145,7 +202,7 @@ const VideoDetails = () => {
                         <>
                             {
                                 part?.map((item) => {
-                                    return <CourseItem key={item.id} course={item}/>
+                                    return <CourseItem onValueChange={handleValueChange} key={item.id} course={item}/>
                                 })
                             }
                         </>
@@ -185,6 +242,28 @@ const VideoDetails = () => {
                         />
                     </TabPane>
                 </Tabs>
+            </div>
+            <div className="fixed-bottom">
+                {/* 固定在底部的内容 */}
+                <div className='bottom-left'>
+                    <CustomerServiceFilled/>
+                    <div>客服</div>
+                </div>
+                {
+                    isSubscribe ?
+                        <button disabled={true} className='bottom-right-isSubscribe'
+                                onClick={subscribe}>已订阅</button> :
+                        <button className='bottom-right' onClick={subscribe}>立即订阅</button>
+                }
+                <Modal className='modal-container'
+                       footer={null}
+                       centered={true}
+                       open={isModalOpen}
+                       onCancel={handleCancel}>
+                    <div>
+                        <UnauthenticatedApp getIsLogin={getIsLogin}/>
+                    </div>
+                </Modal>
             </div>
         </div>
     );

@@ -36,7 +36,7 @@ const UnauthenticatedApp = (props:Props) => {
                 }
 
                 <Divider className="ant-divider"/>
-                <a onClick={() => setIsRegister(!isRegister)}>{isRegister ? '没有账号？注册新账号' :'已经有帐号了？直接登录' }</a>
+                <a  style={{display:'flex',justifyContent:'center',alignItems:'center'}} onClick={() => setIsRegister(!isRegister)}>{isRegister ? '没有账号？注册新账号' :'已经有帐号了？直接登录' }</a>
             </div>
         </div>
     );

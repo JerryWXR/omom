@@ -34,6 +34,16 @@ const Login = (props: Props) => {
             getLogin(true)
             return res.data
         }
+        if (res.retCode == RESPONSE_STATUS.TOKEN_ERROR) {
+            console.log('22222')
+            // sessionStorage.setItem(TokenInfo.AUTHORIZATION, res.data)
+            navigate('/login')
+            getLogin(false)
+            return res.message
+        }
+    };
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo);
     };
 
     return (
@@ -42,6 +52,7 @@ const Login = (props: Props) => {
                 className="login-form"
                 initialValues={{remember: true}}
                 onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
             >
                 <Form.Item
                     name="username"
